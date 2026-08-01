@@ -22,7 +22,7 @@ export default function Login() {
       navigate("/profile");
     } catch (err: any) {
       if (err.response?.status === 401) {
-        setError("Invalid email or password. Please register if you are not registered.");
+        setError("Invalid emails or password. Please register if you are not registered.");
       } else {
         setError("Login failed. Please try again.");
       }

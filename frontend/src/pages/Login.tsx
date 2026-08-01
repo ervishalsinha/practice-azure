@@ -31,7 +31,7 @@ export default function Login() {
 
   return (
     <div style={{ maxWidth: "400px", margin: "80px auto" }}>
-      <h1>Login page</h1>
+      <h1>Login pages</h1>
       <form onSubmit={handleSubmit}> 
         <div style={{ marginBottom: "16px" }}>
           <label style={{ display: "block", marginBottom: "8px" }}>Email</label>

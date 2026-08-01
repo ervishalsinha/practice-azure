@@ -82,7 +82,7 @@ def get_user(db: Session = Depends(get_db)):
 
 
 
-@router.get("/db-test")
+@router.get("/db-testt")
 def db_test():
     try:
         with engine.connect() as conn:

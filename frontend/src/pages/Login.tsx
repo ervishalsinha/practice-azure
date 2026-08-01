@@ -22,7 +22,7 @@ export default function Login() {
       navigate("/profile");
     } catch (err: any) {
       if (err.response?.status === 401) {
-        setError("Invalid emails or password. Please register iff you are not registered.");
+        setError("Invalid email or password. Please register iff you are not registered.");
       } else {
         setError("Login failed. Please try again.");
       }
@@ -31,7 +31,7 @@ export default function Login() {
 
   return (
     <div style={{ maxWidth: "400px", margin: "80px auto" }}>
-      <h1>Login</h1>
+      <h1>Logins</h1>
       <form onSubmit={handleSubmit}> 
         <div style={{ marginBottom: "16px" }}>
           <label style={{ display: "block", marginBottom: "8px" }}>Email</label>

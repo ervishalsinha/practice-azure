@@ -15,8 +15,16 @@
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.routing import _IncludedRouter
 
 from app.api.routes.user import router as user_router
+
+if not hasattr(_IncludedRouter, "path"):
+    @property
+    def _included_router_path(self) -> str:
+        return self.include_context.prefix or ""
+
+    _IncludedRouter.path = _included_router_path
 
 app = FastAPI(title="Task Manager API")
 

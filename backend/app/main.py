@@ -29,7 +29,7 @@ if not hasattr(_IncludedRouter, "path"):
 app = FastAPI(title="Task Manager API")
 
 origins = [
-    "http://localhost:5173",
+    "http://localhost:5173","https://ashy-tree-0dcff9900.7.azurestaticapps.net"
 ]
 
 app.add_middleware(

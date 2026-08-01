@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - main
+    paths:
+      - 'backend/**'
   workflow_dispatch:
 
 permissions:
@@ -29,8 +31,6 @@ jobs:
       - name: Install dependencies
         working-directory: backend
         run: |
-          python -m venv antenv
-          source antenv/bin/activate
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
@@ -39,6 +39,7 @@ jobs:
         with:
           name: python-app
           path: backend
+
 
   deploy:
     runs-on: ubuntu-latest
@@ -49,7 +50,7 @@ jobs:
       contents: read
 
     steps:
-      - name: Download artifact
+      - name: Download backend artifact
         uses: actions/download-artifact@v4
         with:
           name: python-app
@@ -62,7 +63,7 @@ jobs:
           tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_AB9FD84FB006475B91A9E2CC4ABF7656 }}
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_205F5597B6CF42E2988B4295C6811602 }}
 
-      - name: Deploy to Azure Web App
+      - name: Deploy backend to Azure Web App
         uses: azure/webapps-deploy@v3
         with:
           app-name: api-list

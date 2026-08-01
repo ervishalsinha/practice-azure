@@ -1,11 +1,14 @@
+import type { ReactNode } from "react";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+
 import Login from "./pages/Login";
 import Profile from "./pages/Profile";
 import Register from "./pages/Register";
 
-function PrivateRoute({ children }: { children: JSX.Element }) {
+function PrivateRoute({ children }: { children: ReactNode }) {
   const token = localStorage.getItem("token");
-  return token ? children : <Navigate to="/login" replace />;
+
+  return token ? <>{children}</> : <Navigate to="/login" replace />;
 }
 
 function App() {

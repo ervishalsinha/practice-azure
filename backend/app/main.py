@@ -40,3 +40,4 @@ def home():
     return {
         "message": "Welcome to Task Manager API 🚀"
     }
+

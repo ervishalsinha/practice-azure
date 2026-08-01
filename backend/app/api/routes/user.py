@@ -15,6 +15,8 @@ from app.services.auth_service import login_user
 from app.services.user_service import create_user
 from app.services.user_service import get_user_by_email
 from app.models.user import User
+from sqlalchemy import text
+from app.db.database import engine
 
 router = APIRouter()
 
@@ -74,3 +76,15 @@ def profile(
 def get_user(db: Session = Depends(get_db)):
     users = db.query(User).all()
     return users
+
+
+
+
+@router.get("/db-test")
+def db_test():
+    try:
+        with engine.connect() as conn:
+            conn.execute(text("SELECT 1"))
+        return {"status": "Database connected"}
+    except Exception as e:
+        return {"error": str(e)}

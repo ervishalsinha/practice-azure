@@ -17,6 +17,8 @@ from app.services.user_service import get_user_by_email
 from app.models.user import User
 from sqlalchemy import text
 from app.db.database import engine
+from fastapi import HTTPException
+import traceback
 router = APIRouter()
 
 
@@ -78,6 +80,8 @@ def get_user(db: Session = Depends(get_db)):
 
 
 
+
+
 @router.get("/db-test")
 def db_test():
     try:
@@ -87,8 +91,6 @@ def db_test():
                 "status": "Database connected",
                 "db_version": result.scalar()
             }
-    except Exception as e:
-        return {
-            "status": "failed",
-            "error": str(e)
-        }
+    except Exception:
+        print(traceback.format_exc())
+        raise HTTPException(status_code=500, detail="Database connection failed")
